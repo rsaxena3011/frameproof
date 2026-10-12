@@ -25,3 +25,15 @@ submission material): same character across two views scored
 cosine 0.684; a different character scored 0.37. The initial
 0.45 drift threshold sits between the two, as intended.
 Next: prop/object persistence + the agent loop.
+
+## Agent loop, 2026-10-12 (local)
+agent_run.py runs coarse pass -> dense native-res re-inspection ->
+second opinion -> verdict, with a full step trace.
+Fixtures: clean PASS, frozen REGEN NOTE, flash ESCALATE, cuts PASS.
+One real bug found and fixed by measurement: the dense frozen check
+used MAX frame diff, and mp4v keyframe-refresh spikes (2.67 on a
+truly frozen clip; median diff 0.0) vetoed a true finding. Dense
+rule now uses median diff + still-fraction >= 0.9.
+The Oct 19 "agent loop live" gate is effectively met locally,
+a week early. Remaining: prop persistence, deflicker auto-fix,
+evaluation set, AWS/Graviton (Oct 15 gate).

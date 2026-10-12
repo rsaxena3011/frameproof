@@ -53,7 +53,15 @@ def _dense_recheck(path: str, finding: dict, fps: float) -> tuple[bool, str]:
     if check == "frozen_frames":
         diffs = np.array([float(cv2.absdiff(grays[i], grays[i - 1]).mean())
                           for i in range(1, len(grays))])
-        frac_still = float((diffs < 0.35).mean())
+        # The dense span is padded by one frame on each side so the median
+        # sees the boundary motion; but the still fraction is measured on
+        # the INTERIOR diffs (inside the reported span) only. Otherwise a
+        # short span's two padded motion diffs eat the 0.9 budget and a
+        # genuine 12-frame freeze downgrades (measured 11/13 = 0.85).
+        start = max(0, a - 1)
+        lo = a - start
+        interior = diffs[lo:lo + (b - a)]
+        frac_still = float((interior < 0.35).mean()) if len(interior) else 1.0
         # Median + still-fraction, not max: encoder keyframe refresh spikes
         # (measured up to 2.67 on a truly frozen clip) must not veto.
         return (float(np.median(diffs)) < 0.35 and frac_still >= 0.9,

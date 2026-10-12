@@ -48,3 +48,32 @@ weakest true flicker 0.0105 in every window, lightning median
 Standing lesson, twice proven in one evening: global statistics
 hide exactly the local structure QC exists to catch. Measure
 in windows, confirm in spans.
+
+## Batch 3 + Run 4, 2026-10-13: 59/61, then 61/61
+Set expanded to 61 clips (tests/make_eval3.py): 4 more clean
+seeds, a 3-shot cuts clip, end-of-clip freezes, a 0.5s mid
+freeze, 10 Hz + near-threshold (0.03 amp) 6 Hz flicker, sigma
+2.5 blur, a slower-cadence flash, and two new hard negatives
+(slow dolly push-in, gentle exposure ramp).
+Run at batch 3: 59/61. Two misses, one mine, one real:
+1. flicker_7 read PASS. My fixture bug: 12 Hz flicker sampled
+   at 24 fps aliases exactly to zero (sin(pi*t)=0 for integer
+   t), so the clip contained NO oscillation at all. The agent
+   was right; the fixture was wrong. Regenerated at 10 Hz.
+2. frozen_mid_2 (12-frame freeze) read PASS. Real gap, in two
+   layers. (a) Coarse: diff-runs are one shorter than
+   frame-runs (11 zero diffs for a 12-frame freeze) and
+   FROZEN_MIN_RUN was 12. Measured every PASS clip's max
+   zero-diff run = 0 (grain + motion guarantee motion), so
+   the floor was lowered 12 -> 8 frames with large margin;
+   kept at 8, not lower, for headroom on noisier real footage.
+   (b) Dense: the still fraction was measured over the padded
+   span, so the 2 padded motion diffs ate the 0.9 budget on a
+   short span (11/13 = 0.85). Fraction is now measured over
+   the INTERIOR diffs of the reported span (11/11 = 1.0);
+   the padded median still guards the boundary.
+Re-run: 61/61, all five hand-built fixtures unchanged.
+Standing lesson: a detector's floor is defined by its
+shortest-span defect, not its average case; verify the floor
+at both stages (coarse min-run AND dense confirm) whenever a
+new span length enters the eval set.

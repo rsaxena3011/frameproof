@@ -15,7 +15,11 @@ import numpy as np
 # --- thresholds (initial, to be calibrated on the eval set) -----------------
 SHOT_HIST_CORR_MIN = 0.72      # below this HSV-hist correlation = cut
 FROZEN_MEAN_ABS_DIFF = 0.35    # per-pixel mean abs diff (0-255 scale)
-FROZEN_MIN_RUN = 12            # frames (~0.5s at 24fps)
+FROZEN_MIN_RUN = 8             # frames (~1/3s at 24fps). Diff-runs are one
+                              # shorter than frame-runs, so 8 catches a 9-frame
+                              # freeze. All clean eval clips show max run 0,
+                              # so the margin is large; kept at 8 (not lower)
+                              # to leave headroom for noisier real footage.
 BLUR_LAPLACIAN_VAR_MIN = 45.0  # below this a frame counts as soft
 BLUR_RATIO_MIN = 0.008         # laplacian var / gray var: darkness alone
                                # lowers laplacian var, real blur lowers

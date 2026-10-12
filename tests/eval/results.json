@@ -6,7 +6,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.36,
+      "seconds": 0.25,
       "confirmed": []
     },
     {
@@ -14,7 +14,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.21,
+      "seconds": 0.15,
       "confirmed": []
     },
     {
@@ -22,7 +22,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.25,
+      "seconds": 0.13,
       "confirmed": []
     },
     {
@@ -30,7 +30,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.21,
+      "seconds": 0.12,
       "confirmed": []
     },
     {
@@ -46,7 +46,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.22,
+      "seconds": 0.18,
       "confirmed": []
     },
     {
@@ -54,7 +54,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.14,
+      "seconds": 0.18,
       "confirmed": []
     },
     {
@@ -62,7 +62,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.18,
+      "seconds": 0.14,
       "confirmed": []
     },
     {
@@ -70,7 +70,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.19,
+      "seconds": 0.26,
       "confirmed": []
     },
     {
@@ -78,7 +78,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.21,
+      "seconds": 0.35,
       "confirmed": []
     },
     {
@@ -86,7 +86,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.29,
+      "seconds": 0.31,
       "confirmed": [
         "frozen_frames"
       ]
@@ -96,7 +96,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.25,
+      "seconds": 0.3,
       "confirmed": [
         "frozen_frames"
       ]
@@ -106,7 +106,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.31,
+      "seconds": 0.24,
       "confirmed": [
         "frozen_frames"
       ]
@@ -116,7 +116,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.31,
+      "seconds": 0.25,
       "confirmed": [
         "frozen_frames"
       ]
@@ -126,7 +126,7 @@
       "expected": "ESCALATE",
       "got": "ESCALATE",
       "ok": true,
-      "seconds": 0.93,
+      "seconds": 0.71,
       "confirmed": [
         "blur",
         "flash_screen"
@@ -137,7 +137,7 @@
       "expected": "ESCALATE",
       "got": "ESCALATE",
       "ok": true,
-      "seconds": 0.97,
+      "seconds": 0.67,
       "confirmed": [
         "blur",
         "flash_screen"
@@ -148,7 +148,7 @@
       "expected": "ESCALATE",
       "got": "ESCALATE",
       "ok": true,
-      "seconds": 0.83,
+      "seconds": 0.66,
       "confirmed": [
         "blur",
         "flash_screen"
@@ -159,7 +159,7 @@
       "expected": "AUTO-FIX",
       "got": "AUTO-FIX",
       "ok": true,
-      "seconds": 3.07,
+      "seconds": 2.93,
       "confirmed": [
         "flicker"
       ]
@@ -169,7 +169,7 @@
       "expected": "AUTO-FIX",
       "got": "AUTO-FIX",
       "ok": true,
-      "seconds": 2.7,
+      "seconds": 2.56,
       "confirmed": [
         "flicker"
       ]
@@ -179,7 +179,7 @@
       "expected": "AUTO-FIX",
       "got": "AUTO-FIX",
       "ok": true,
-      "seconds": 2.96,
+      "seconds": 2.48,
       "confirmed": [
         "flicker"
       ]
@@ -189,7 +189,7 @@
       "expected": "AUTO-FIX",
       "got": "AUTO-FIX",
       "ok": true,
-      "seconds": 2.58,
+      "seconds": 2.17,
       "confirmed": [
         "flicker"
       ]
@@ -199,7 +199,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.58,
+      "seconds": 0.57,
       "confirmed": [
         "blur"
       ]
@@ -209,7 +209,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.58,
+      "seconds": 0.55,
       "confirmed": [
         "blur"
       ]
@@ -219,7 +219,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.66,
+      "seconds": 0.64,
       "confirmed": [
         "blur"
       ]
@@ -229,7 +229,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.16,
+      "seconds": 0.11,
       "confirmed": []
     },
     {
@@ -237,7 +237,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.14,
+      "seconds": 0.1,
       "confirmed": []
     },
     {
@@ -245,7 +245,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.19,
+      "seconds": 0.15,
       "confirmed": []
     },
     {
@@ -253,7 +253,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.17,
+      "seconds": 0.11,
       "confirmed": []
     },
     {
@@ -261,7 +261,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.16,
+      "seconds": 0.12,
       "confirmed": []
     },
     {
@@ -269,7 +269,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.14,
+      "seconds": 0.13,
       "confirmed": []
     },
     {
@@ -277,7 +277,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.16,
+      "seconds": 0.12,
       "confirmed": []
     },
     {
@@ -285,7 +285,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.11,
+      "seconds": 0.15,
       "confirmed": []
     },
     {
@@ -293,7 +293,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.16,
+      "seconds": 0.15,
       "confirmed": []
     },
     {
@@ -301,7 +301,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.29,
+      "seconds": 0.1,
       "confirmed": []
     },
     {
@@ -309,7 +309,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.22,
+      "seconds": 0.17,
       "confirmed": [
         "frozen_frames"
       ]
@@ -319,7 +319,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.21,
+      "seconds": 0.18,
       "confirmed": [
         "frozen_frames"
       ]
@@ -329,8 +329,9 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.26,
+      "seconds": 0.23,
       "confirmed": [
+        "frozen_frames",
         "frozen_frames"
       ]
     },
@@ -339,7 +340,7 @@
       "expected": "AUTO-FIX",
       "got": "AUTO-FIX",
       "ok": true,
-      "seconds": 2.38,
+      "seconds": 2.14,
       "confirmed": [
         "flicker"
       ]
@@ -349,7 +350,7 @@
       "expected": "AUTO-FIX",
       "got": "AUTO-FIX",
       "ok": true,
-      "seconds": 2.35,
+      "seconds": 2.43,
       "confirmed": [
         "flicker"
       ]
@@ -359,7 +360,7 @@
       "expected": "AUTO-FIX",
       "got": "AUTO-FIX",
       "ok": true,
-      "seconds": 2.17,
+      "seconds": 2.1,
       "confirmed": [
         "flicker"
       ]
@@ -369,7 +370,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.61,
+      "seconds": 0.55,
       "confirmed": [
         "blur"
       ]
@@ -379,7 +380,7 @@
       "expected": "REGEN NOTE",
       "got": "REGEN NOTE",
       "ok": true,
-      "seconds": 0.6,
+      "seconds": 0.57,
       "confirmed": [
         "blur"
       ]
@@ -389,7 +390,7 @@
       "expected": "ESCALATE",
       "got": "ESCALATE",
       "ok": true,
-      "seconds": 0.65,
+      "seconds": 0.74,
       "confirmed": [
         "blur",
         "flash_screen"
@@ -400,7 +401,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.14,
+      "seconds": 0.11,
       "confirmed": []
     },
     {
@@ -408,7 +409,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.11,
+      "seconds": 0.1,
       "confirmed": []
     },
     {
@@ -416,7 +417,7 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
-      "seconds": 0.12,
+      "seconds": 0.14,
       "confirmed": []
     },
     {
@@ -424,8 +425,136 @@
       "expected": "PASS",
       "got": "PASS",
       "ok": true,
+      "seconds": 0.11,
+      "confirmed": []
+    },
+    {
+      "file": "clean_12.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.14,
+      "confirmed": []
+    },
+    {
+      "file": "clean_13.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.13,
+      "confirmed": []
+    },
+    {
+      "file": "clean_14.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.13,
+      "confirmed": []
+    },
+    {
+      "file": "clean_15.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.11,
+      "confirmed": []
+    },
+    {
+      "file": "cuts_6.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.13,
+      "confirmed": []
+    },
+    {
+      "file": "frozen_tail_0.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.17,
+      "confirmed": [
+        "frozen_frames"
+      ]
+    },
+    {
+      "file": "frozen_tail_1.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.18,
+      "confirmed": [
+        "frozen_frames"
+      ]
+    },
+    {
+      "file": "frozen_mid_2.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.17,
+      "confirmed": [
+        "frozen_frames"
+      ]
+    },
+    {
+      "file": "flicker_8.mp4",
+      "expected": "AUTO-FIX",
+      "got": "AUTO-FIX",
+      "ok": true,
+      "seconds": 2.3,
+      "confirmed": [
+        "flicker"
+      ]
+    },
+    {
+      "file": "blur_5.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.69,
+      "confirmed": [
+        "blur"
+      ]
+    },
+    {
+      "file": "flash_4.mp4",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "ok": true,
+      "seconds": 0.81,
+      "confirmed": [
+        "blur",
+        "flash_screen",
+        "flicker"
+      ]
+    },
+    {
+      "file": "hardneg_dolly.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
       "seconds": 0.12,
       "confirmed": []
+    },
+    {
+      "file": "hardneg_exposure.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.12,
+      "confirmed": []
+    },
+    {
+      "file": "flicker_7.mp4",
+      "expected": "AUTO-FIX",
+      "got": "AUTO-FIX",
+      "ok": true,
+      "seconds": 2.3,
+      "confirmed": [
+        "flicker"
+      ]
     }
   ]
 }

@@ -279,5 +279,89 @@
     "file": "hardneg_fade.mp4",
     "defects": [],
     "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_12.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_13.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_14.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_15.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "cuts_6.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "frozen_tail_0.mp4",
+    "defects": [
+      "frozen_frames"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "frozen_tail_1.mp4",
+    "defects": [
+      "frozen_frames"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "frozen_mid_2.mp4",
+    "defects": [
+      "frozen_frames"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "flicker_8.mp4",
+    "defects": [
+      "flicker"
+    ],
+    "expected_verdict": "AUTO-FIX"
+  },
+  {
+    "file": "blur_5.mp4",
+    "defects": [
+      "blur"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "flash_4.mp4",
+    "defects": [
+      "flash_screen"
+    ],
+    "expected_verdict": "ESCALATE"
+  },
+  {
+    "file": "hardneg_dolly.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "hardneg_exposure.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "flicker_7.mp4",
+    "defects": [
+      "flicker"
+    ],
+    "expected_verdict": "AUTO-FIX"
   }
 ]

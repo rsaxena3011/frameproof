@@ -3,3 +3,6 @@ __pycache__/
 
 # Model binaries are fetched, not committed
 models/*.onnx
+
+# Web UI job data (uploads, reports, decisions)
+jobs/

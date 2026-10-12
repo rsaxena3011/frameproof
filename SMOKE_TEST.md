@@ -17,3 +17,11 @@ Final results, all as designed:
 
 Next: YuNet + SFace identity-drift check, then the agent loop.
 AWS/Graviton gate is Oct 15; organizer email reply due Oct 14.
+
+## Identity-drift machinery, 2026-10-12 (local)
+YuNet + SFace models from the OpenCV Zoo load and run under
+OpenCV 5.0.0. Machinery test only, on local stills (never
+submission material): same character across two views scored
+cosine 0.684; a different character scored 0.37. The initial
+0.45 drift threshold sits between the two, as intended.
+Next: prop/object persistence + the agent loop.

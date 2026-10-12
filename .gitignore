@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+
+# Model binaries are fetched, not committed
+models/*.onnx

@@ -1,39 +1,81 @@
 # FrameProof
 
-Agentic quality control for AI-generated video, built on OpenCV 5.
-Entry for the OpenCV AI Competition 2026 (C056).
+An agentic QC inspector for AI-generated video. Generators ship
+defects that humans catch late: faces that drift off-model, frames
+that freeze, flicker, seizure-risk flashing, props that vanish,
+shots gone soft. FrameProof inspects a clip the way a good QC
+engineer would: a fast pass first, a hard second look at anything
+suspicious, a second opinion before any conviction, and a human
+with the final word. Entry for the OpenCV AI Competition 2026.
 
-FrameProof inspects a generated clip the way a release engineer would:
-a fast deterministic coarse pass, dense re-inspection of suspect spans,
-and a verdict with evidence: PASS, AUTO-FIX, REGEN NOTE, or ESCALATE
-to a human.
+## The agent loop
 
-## Coarse pass (working now)
+1. **Coarse pass** (OpenCV 5, deterministic): shot boundaries,
+   frozen-frame runs, blur, a rough WCAG three-flash screen,
+   temporal flicker.
+2. **Dense re-inspection**: every suspect span is re-measured at
+   native resolution with a method suited to that check.
+3. **Second opinion**: if the dense measurement disagrees with
+   the coarse one, the finding is downgraded and the clip is
+   escalated to a human instead of auto-judged.
+4. **Verdicts**: PASS, AUTO-FIX (the fix is executed and then
+   re-measured to prove it worked), REGEN NOTE (generation
+   defects a human should send back), ESCALATE (safety findings
+   and disagreements). Every step is written to a trace.
 
-`python3 frameproof.py <video>` runs the deterministic checks:
+Specialist scans plug into the same loop: face identity drift
+(YuNet detection + SFace embeddings against a reference still)
+and prop persistence (ORB feature matching against a reference
+crop).
 
-- Shot boundaries (HSV histogram correlation)
-- Frozen-frame runs (near-zero inter-frame difference)
-- Blur / softness (Laplacian variance)
-- Flash screen: a rough WCAG three-flash screen (not a certification)
-- Temporal luminance jitter
+## Checks
 
-Exit codes: 0 PASS, 1 WARN, 2 FAIL, 3 error. `--json` for the full
-structured report.
+| Check | Method | Catches |
+|---|---|---|
+| Shot boundaries | HSV histogram correlation | unintended cuts, merged shots |
+| Frozen frames | per-frame mean abs diff runs | stalled generation, dup frames |
+| Blur | Laplacian variance + contrast-normalized ratio | soft or smeared shots |
+| Flash screen | luminance swings per 1s window | photosensitivity risk (rough screen, not a certification) |
+| Flicker | windowed-median detrended jitter | temporal instability |
+| Identity drift | YuNet + SFace cosine vs reference | character face morphing |
+| Prop persistence | ORB matches vs reference crop | props dropped or swapped |
 
-## Smoke test
+## Evaluation
 
-`python3 tests/make_fixtures.py` generates four purpose-made synthetic
-clips (clean / frozen / flashing / hard cut). Expected: PASS, FAIL,
-FAIL, PASS with the cut found at exactly 1.50s. Verified 2026-10-12,
-see SMOKE_TEST.md.
+47 purpose-made labeled clips (clean, multi-shot, frozen, flash,
+flicker, blur, plus hard negatives: dark scene, slow zoom, fast
+pan, camera shake, fade, a single lightning strike). Current
+score: 47/47 verdict accuracy. The set has already caught two
+real bugs, both fixed by measurement, not by loosening the net:
+dark scenes falsely convicted of blur, and a lightning transient
+impersonating flicker. Full record: EVAL.md. Fixture smoke tests:
+SMOKE_TEST.md.
 
-## Roadmap
+## Run it
 
-- Face-identity drift (YuNet + SFace against reference stills)
-- Prop/object persistence across shots
-- Agent loop: coarse pass, dense re-inspection, second opinion,
-  verdicts with full step traces
-- AWS run: S3 + queue + Graviton workers, COOL benchmarked against x86
-- Evaluation: 40-60 purpose-made test clips, precision/recall against
-  a fixed-pipeline baseline and a VLM-only baseline
+```
+pip install -r requirements.txt
+python3 frameproof.py clip.mp4            # coarse pass CLI
+python3 agent_run.py clip.mp4             # full agent loop
+python3 agent_run.py clip.mp4 --reference face.png
+python3 app.py                            # web UI on :5050
+python3 eval_run.py                       # evaluation harness
+python3 tests/make_fixtures.py            # regenerate fixtures
+```
+
+Models (YuNet, SFace) are fetched from the OpenCV Zoo into
+models/ and are not committed.
+
+## Cloud plan
+
+Designed for AWS: S3 ingest, a job queue, Graviton workers, with
+a COOL benchmark (Graviton vs x86: latency, throughput, cost per
+1,000 frames) as part of the evidence pack. The local engine in
+this repo is the reference implementation the workers run.
+
+## Honesty notes
+
+The flash check is a rough three-flash screen, not a WCAG
+certification. Thresholds are initial values calibrated on the
+purpose-made evaluation set; the eval record states its own
+limits. Test material is purpose-made only.

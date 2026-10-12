@@ -19,6 +19,7 @@ FROZEN_MIN_RUN = 12            # frames (~0.5s at 24fps)
 BLUR_LAPLACIAN_VAR_MIN = 45.0  # below this a frame counts as soft
 FLASH_DELTA_LUMA = 0.18        # relative luminance swing counting as a flash
 FLASH_MAX_PER_SECOND = 3       # WCAG three-flash general threshold (screen)
+FLICKER_JITTER_MIN = 0.015     # detrended luminance std above this = flicker
 
 
 def _spans_from_flags(flags: np.ndarray, min_run: int) -> list[tuple[int, int]]:
@@ -131,6 +132,15 @@ def analyse(path: str) -> dict:
         jitter = float(np.std(detrended[2:-2])) if n > 8 else 0.0
     else:
         jitter = 0.0
+    flash_covers_all = any(
+        f["check"] == "flash_screen" and f["end_frame"] - f["start_frame"] >= n - 2
+        for f in findings
+    )
+    if jitter > FLICKER_JITTER_MIN and not flash_covers_all:
+        findings.append(
+            span_dict("flicker", 0, n - 1, "warn",
+                      f"luminance jitter {jitter:.4f} above {FLICKER_JITTER_MIN}")
+        )
 
     cuts = sorted(int(i) for i in cut_idx)
     return {

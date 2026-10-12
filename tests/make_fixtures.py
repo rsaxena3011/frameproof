@@ -59,6 +59,31 @@ def main():
         w.write(texture(1, t) if t < N // 2 else texture(4, t))
     w.release()
 
+    # Flicker: textured motion with a 6 Hz global luminance oscillation
+    # (per-frame swings stay far below the flash-screen delta).
+    w = writer("flicker.mp4")
+    for t in range(N):
+        frame = texture(1, t).astype(np.float32)
+        frame *= 1.0 + 0.06 * np.sin(2 * np.pi * 6 * t / FPS)
+        w.write(np.clip(frame, 0, 255).astype(np.uint8))
+    w.release()
+
+    # Prop persistence: a distinctive patch sits in the scene for the
+    # first 2 seconds, then vanishes for the final second.
+    rng = np.random.default_rng(7)
+    patch = (rng.random((90, 120)) * 255).astype(np.uint8)
+    patch = cv2.cvtColor(patch, cv2.COLOR_GRAY2BGR)
+    patch[::15, :] = (0, 0, 255)
+    patch[:, ::15] = (0, 255, 255)
+    cv2.imwrite(str(OUT / "prop_ref.png"), patch)
+    w = writer("prop.mp4")
+    for t in range(N):
+        frame = texture(3, t)
+        if t < 2 * FPS:
+            frame[40:130, 60:180] = patch
+        w.write(frame)
+    w.release()
+
     print("fixtures written to", OUT)
 
 

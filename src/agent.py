@@ -67,6 +67,11 @@ def _dense_recheck(path: str, finding: dict, fps: float) -> tuple[bool, str]:
     if check == "blur":
         vars_ = [float(cv2.Laplacian(g, cv2.CV_64F).var()) for g in grays]
         return (float(np.median(vars_)) < 90.0, f"native median laplacian var {np.median(vars_):.1f}")
+    if check == "flicker":
+        luma = np.array([g.mean() / 255.0 for g in grays])
+        detrended = luma - np.convolve(luma, np.ones(5) / 5, mode="same")
+        j = float(np.std(detrended[2:-2])) if len(luma) > 8 else 0.0
+        return (j > 0.012, f"native detrended jitter {j:.4f}")
     return True, "no dense method; coarse result stands"
 
 
@@ -122,20 +127,52 @@ def run_agent(path: str, reference: str | None = None) -> dict:
     confirmed = [d for d in dispositions if d.get("disposition") == "confirmed"]
     downgraded = [d for d in dispositions if d.get("disposition") == "downgraded"]
     checks_hit = {d["check"] for d in confirmed if d["severity"] == "fail"}
+    regen = bool(checks_hit & {"frozen_frames", "identity_drift"}) or any(
+        d["check"] == "blur" for d in confirmed
+    )
     if "flash_screen" in checks_hit or downgraded:
         verdict = "ESCALATE"
-    elif checks_hit & {"frozen_frames", "identity_drift", "blur"}:
+    elif regen:
         verdict = "REGEN NOTE"
     elif confirmed:
         verdict = "AUTO-FIX"
     else:
         verdict = "PASS"
     log("verdict", verdict)
+
+    autofix = None
+    if verdict == "AUTO-FIX" and any(d["check"] == "flicker" for d in confirmed):
+        autofix = _apply_deflicker(path, report["luminance_jitter"], log)
+
     return {
         "path": path,
         "coarse_verdict": report["verdict"],
         "verdict": verdict,
         "shots": report["shots"],
         "dispositions": dispositions,
+        "autofix": autofix,
         "trace": trace,
+    }
+
+
+def _apply_deflicker(path: str, jitter_before: float, log) -> dict:
+    """AUTO-FIX execution: ffmpeg deflicker, then re-measure the jitter."""
+    import subprocess
+    from pathlib import Path
+
+    src = Path(path)
+    out = src.with_name(f"{src.stem}_deflickered.mp4")
+    cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(src),
+           "-vf", "deflicker=size=5:mode=pm", "-c:a", "copy", str(out)]
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if r.returncode != 0:
+        log("autofix", f"deflicker failed: {r.stderr.strip()[:200]}")
+        return {"applied": False, "error": r.stderr.strip()[:200]}
+    after = analyse(str(out))
+    log("autofix", f"deflickered -> {out.name}; jitter {jitter_before} -> {after['luminance_jitter']}")
+    return {
+        "applied": True,
+        "output": str(out),
+        "jitter_before": jitter_before,
+        "jitter_after": after["luminance_jitter"],
     }

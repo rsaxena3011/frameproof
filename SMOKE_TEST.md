@@ -37,3 +37,18 @@ rule now uses median diff + still-fraction >= 0.9.
 The Oct 19 "agent loop live" gate is effectively met locally,
 a week early. Remaining: prop persistence, deflicker auto-fix,
 evaluation set, AWS/Graviton (Oct 15 gate).
+
+## Flicker auto-fix + prop persistence, 2026-10-12 (local)
+- flicker.mp4 (6 Hz luminance oscillation, below flash delta):
+  agent verdict AUTO-FIX, deflicker executed, measured jitter
+  0.0252 -> 0.0049 after the fix. The fix is verified by
+  re-measurement, not assumed.
+- prop.mp4 (textured prop patch present 0-2s, gone 2-3s):
+  ORB persistence scan reads 75-78 good matches while present,
+  exactly 0 once gone. Verdict FAIL with the missing span.
+Engine status: coarse checks (boundaries, frozen, blur, flash
+screen, flicker), identity drift (YuNet/SFace), prop persistence
+(ORB), agent loop with dense re-inspection, second opinion,
+verdicts PASS / AUTO-FIX / REGEN NOTE / ESCALATE and full traces.
+Remaining: evaluation set, AWS/Graviton run (Oct 15 gate), UI,
+submission packaging.

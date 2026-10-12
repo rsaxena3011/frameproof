@@ -1,0 +1,160 @@
+[
+  {
+    "file": "clean_0.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_1.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_2.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_3.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_4.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_5.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "cuts_0.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "cuts_1.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "cuts_2.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "cuts_3.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "frozen_0.mp4",
+    "defects": [
+      "frozen_frames"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "frozen_1.mp4",
+    "defects": [
+      "frozen_frames"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "frozen_2.mp4",
+    "defects": [
+      "frozen_frames"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "frozen_3.mp4",
+    "defects": [
+      "frozen_frames"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "flash_0.mp4",
+    "defects": [
+      "flash_screen"
+    ],
+    "expected_verdict": "ESCALATE"
+  },
+  {
+    "file": "flash_1.mp4",
+    "defects": [
+      "flash_screen"
+    ],
+    "expected_verdict": "ESCALATE"
+  },
+  {
+    "file": "flash_2.mp4",
+    "defects": [
+      "flash_screen"
+    ],
+    "expected_verdict": "ESCALATE"
+  },
+  {
+    "file": "flicker_0.mp4",
+    "defects": [
+      "flicker"
+    ],
+    "expected_verdict": "AUTO-FIX"
+  },
+  {
+    "file": "flicker_1.mp4",
+    "defects": [
+      "flicker"
+    ],
+    "expected_verdict": "AUTO-FIX"
+  },
+  {
+    "file": "flicker_2.mp4",
+    "defects": [
+      "flicker"
+    ],
+    "expected_verdict": "AUTO-FIX"
+  },
+  {
+    "file": "flicker_3.mp4",
+    "defects": [
+      "flicker"
+    ],
+    "expected_verdict": "AUTO-FIX"
+  },
+  {
+    "file": "blur_0.mp4",
+    "defects": [
+      "blur"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "blur_1.mp4",
+    "defects": [
+      "blur"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "blur_2.mp4",
+    "defects": [
+      "blur"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "hardneg_zoom.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "hardneg_dark.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  }
+]

@@ -65,8 +65,10 @@ def _dense_recheck(path: str, finding: dict, fps: float) -> tuple[bool, str]:
         return (per_s > 3 / max(1e-9, (len(frames) / fps)) * fps / fps and swings >= 3,
                 f"native swings in span: {swings}")
     if check == "blur":
-        vars_ = [float(cv2.Laplacian(g, cv2.CV_64F).var()) for g in grays]
-        return (float(np.median(vars_)) < 90.0, f"native median laplacian var {np.median(vars_):.1f}")
+        vars_ = np.array([float(cv2.Laplacian(g, cv2.CV_64F).var()) for g in grays])
+        ratios = np.array([v / (float(g.var()) + 1e-6) for v, g in zip(vars_, grays)])
+        return (float(np.median(vars_)) < 90.0 and float(np.median(ratios)) < 0.008,
+                f"native median laplacian var {np.median(vars_):.1f}, ratio {np.median(ratios):.4f}")
     if check == "flicker":
         luma = np.array([g.mean() / 255.0 for g in grays])
         detrended = luma - np.convolve(luma, np.ones(5) / 5, mode="same")

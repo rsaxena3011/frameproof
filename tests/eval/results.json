@@ -1,0 +1,244 @@
+{
+  "accuracy": 1.0,
+  "rows": [
+    {
+      "file": "clean_0.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.18,
+      "confirmed": []
+    },
+    {
+      "file": "clean_1.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.25,
+      "confirmed": []
+    },
+    {
+      "file": "clean_2.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.2,
+      "confirmed": []
+    },
+    {
+      "file": "clean_3.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.26,
+      "confirmed": []
+    },
+    {
+      "file": "clean_4.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.26,
+      "confirmed": []
+    },
+    {
+      "file": "clean_5.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.17,
+      "confirmed": []
+    },
+    {
+      "file": "cuts_0.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.16,
+      "confirmed": []
+    },
+    {
+      "file": "cuts_1.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.16,
+      "confirmed": []
+    },
+    {
+      "file": "cuts_2.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.15,
+      "confirmed": []
+    },
+    {
+      "file": "cuts_3.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.27,
+      "confirmed": []
+    },
+    {
+      "file": "frozen_0.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.3,
+      "confirmed": [
+        "frozen_frames"
+      ]
+    },
+    {
+      "file": "frozen_1.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.39,
+      "confirmed": [
+        "frozen_frames"
+      ]
+    },
+    {
+      "file": "frozen_2.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.17,
+      "confirmed": [
+        "frozen_frames"
+      ]
+    },
+    {
+      "file": "frozen_3.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.26,
+      "confirmed": [
+        "frozen_frames"
+      ]
+    },
+    {
+      "file": "flash_0.mp4",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "ok": true,
+      "seconds": 0.61,
+      "confirmed": [
+        "blur",
+        "flash_screen"
+      ]
+    },
+    {
+      "file": "flash_1.mp4",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "ok": true,
+      "seconds": 0.69,
+      "confirmed": [
+        "blur",
+        "flash_screen"
+      ]
+    },
+    {
+      "file": "flash_2.mp4",
+      "expected": "ESCALATE",
+      "got": "ESCALATE",
+      "ok": true,
+      "seconds": 0.6,
+      "confirmed": [
+        "blur",
+        "flash_screen"
+      ]
+    },
+    {
+      "file": "flicker_0.mp4",
+      "expected": "AUTO-FIX",
+      "got": "AUTO-FIX",
+      "ok": true,
+      "seconds": 2.7,
+      "confirmed": [
+        "flicker"
+      ]
+    },
+    {
+      "file": "flicker_1.mp4",
+      "expected": "AUTO-FIX",
+      "got": "AUTO-FIX",
+      "ok": true,
+      "seconds": 2.28,
+      "confirmed": [
+        "flicker"
+      ]
+    },
+    {
+      "file": "flicker_2.mp4",
+      "expected": "AUTO-FIX",
+      "got": "AUTO-FIX",
+      "ok": true,
+      "seconds": 2.92,
+      "confirmed": [
+        "flicker"
+      ]
+    },
+    {
+      "file": "flicker_3.mp4",
+      "expected": "AUTO-FIX",
+      "got": "AUTO-FIX",
+      "ok": true,
+      "seconds": 2.33,
+      "confirmed": [
+        "flicker"
+      ]
+    },
+    {
+      "file": "blur_0.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.5,
+      "confirmed": [
+        "blur"
+      ]
+    },
+    {
+      "file": "blur_1.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.5,
+      "confirmed": [
+        "blur"
+      ]
+    },
+    {
+      "file": "blur_2.mp4",
+      "expected": "REGEN NOTE",
+      "got": "REGEN NOTE",
+      "ok": true,
+      "seconds": 0.78,
+      "confirmed": [
+        "blur"
+      ]
+    },
+    {
+      "file": "hardneg_zoom.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.22,
+      "confirmed": []
+    },
+    {
+      "file": "hardneg_dark.mp4",
+      "expected": "PASS",
+      "got": "PASS",
+      "ok": true,
+      "seconds": 0.33,
+      "confirmed": []
+    }
+  ]
+}

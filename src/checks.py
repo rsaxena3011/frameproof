@@ -17,6 +17,10 @@ SHOT_HIST_CORR_MIN = 0.72      # below this HSV-hist correlation = cut
 FROZEN_MEAN_ABS_DIFF = 0.35    # per-pixel mean abs diff (0-255 scale)
 FROZEN_MIN_RUN = 12            # frames (~0.5s at 24fps)
 BLUR_LAPLACIAN_VAR_MIN = 45.0  # below this a frame counts as soft
+BLUR_RATIO_MIN = 0.008         # laplacian var / gray var: darkness alone
+                               # lowers laplacian var, real blur lowers
+                               # the ratio (eval: bright clean 0.046,
+                               # dark clean 0.018, blurred 0.003)
 FLASH_DELTA_LUMA = 0.18        # relative luminance swing counting as a flash
 FLASH_MAX_PER_SECOND = 3       # WCAG three-flash general threshold (screen)
 FLICKER_JITTER_MIN = 0.015     # detrended luminance std above this = flicker
@@ -46,6 +50,7 @@ def analyse(path: str) -> dict:
     hist_corr: list[float] = []
     mean_abs_diff: list[float] = []
     lap_var: list[float] = []
+    lap_ratio: list[float] = []
     luma: list[float] = []
     n = 0
     while True:
@@ -55,7 +60,9 @@ def analyse(path: str) -> dict:
         small = cv2.resize(frame, (320, 180))
         gray = cv2.cvtColor(small, cv2.COLOR_BGR2GRAY)
         luma.append(float(gray.mean()) / 255.0)
-        lap_var.append(float(cv2.Laplacian(gray, cv2.CV_64F).var()))
+        lv = float(cv2.Laplacian(gray, cv2.CV_64F).var())
+        lap_var.append(lv)
+        lap_ratio.append(lv / (float(gray.var()) + 1e-6))
         hsv = cv2.cvtColor(small, cv2.COLOR_BGR2HSV)
         hist = cv2.calcHist([hsv], [0, 1], None, [50, 60], [0, 180, 0, 256])
         cv2.normalize(hist, hist)
@@ -73,6 +80,7 @@ def analyse(path: str) -> dict:
     hist_corr_a = np.array(hist_corr)
     diff_a = np.array(mean_abs_diff)
     lap_a = np.array(lap_var)
+    ratio_a = np.array(lap_ratio)
     luma_a = np.array(luma)
 
     def span_dict(check, a, b, severity, detail):
@@ -104,13 +112,17 @@ def analyse(path: str) -> dict:
                       f"mean_abs_diff<={FROZEN_MEAN_ABS_DIFF} for {b - a + 1} frames")
         )
 
-    # 3) Blur / softness: frames with very low Laplacian variance.
-    blur_flags = lap_a < BLUR_LAPLACIAN_VAR_MIN
+    # 3) Blur / softness: low Laplacian variance AND a low
+    #    contrast-normalized ratio. The ratio requirement is what keeps
+    #    dark-but-sharp scenes from being convicted (they failed this
+    #    check on absolute variance alone in the first eval run).
+    blur_flags = (lap_a < BLUR_LAPLACIAN_VAR_MIN) & (ratio_a < BLUR_RATIO_MIN)
     for a, b in _spans_from_flags(blur_flags, max(3, int(fps * 0.25))):
         seg = lap_a[a : b + 1]
         findings.append(
             span_dict("blur", a, b, "warn",
-                      f"laplacian_var min={seg.min():.1f} median={np.median(seg):.1f}")
+                      f"laplacian_var min={seg.min():.1f} median={np.median(seg):.1f} "
+                      f"ratio median={np.median(ratio_a[a : b + 1]):.4f}")
         )
 
     # 4) Flash screen (rough WCAG three-flash screen, NOT a certification):

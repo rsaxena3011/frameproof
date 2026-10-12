@@ -23,7 +23,13 @@ BLUR_RATIO_MIN = 0.008         # laplacian var / gray var: darkness alone
                                # dark clean 0.018, blurred 0.003)
 FLASH_DELTA_LUMA = 0.18        # relative luminance swing counting as a flash
 FLASH_MAX_PER_SECOND = 3       # WCAG three-flash general threshold (screen)
-FLICKER_JITTER_MIN = 0.015     # detrended luminance std above this = flicker
+FLICKER_JITTER_MIN = 0.008     # median per-window detrended jitter above
+                               # this = sustained flicker. Windowing is
+                               # what separates flicker from a single
+                               # transient: eval lightning spike scores
+                               # 0.053 globally but 0.0001 per-window;
+                               # weakest true flicker (3 Hz) is 0.0105
+                               # in every window; clean peaks at 0.001.
 
 
 def _spans_from_flags(flags: np.ndarray, min_run: int) -> list[tuple[int, int]]:
@@ -138,10 +144,18 @@ def analyse(path: str) -> dict:
                       f"(screen threshold {FLASH_MAX_PER_SECOND})")
         )
 
-    # 5) Temporal flicker inside shots: high-frequency luminance jitter.
-    if n >= 8:
+    # 5) Temporal flicker: sustained high-frequency luminance jitter.
+    #    Median of per-0.5s-window detrended std, so one lightning frame
+    #    cannot impersonate flicker and slow flicker cannot hide.
+    win = max(8, int(round(fps * 0.5)))
+    if n >= 2 * win:
         detrended = luma_a - np.convolve(luma_a, np.ones(5) / 5, mode="same")
-        jitter = float(np.std(detrended[2:-2])) if n > 8 else 0.0
+        windows = [float(np.std(detrended[i + 2: i + win - 2]))
+                   for i in range(0, n - win + 1, win)]
+        jitter = float(np.median(windows)) if windows else 0.0
+    elif n > 8:
+        detrended = luma_a - np.convolve(luma_a, np.ones(5) / 5, mode="same")
+        jitter = float(np.std(detrended[2:-2]))
     else:
         jitter = 0.0
     flash_covers_all = any(

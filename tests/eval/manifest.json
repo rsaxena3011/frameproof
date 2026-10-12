@@ -156,5 +156,128 @@
     "file": "hardneg_dark.mp4",
     "defects": [],
     "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_6.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_7.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_8.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_9.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_10.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "clean_11.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "cuts_4.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "cuts_5.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "frozen_mid_0.mp4",
+    "defects": [
+      "frozen_frames"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "frozen_mid_1.mp4",
+    "defects": [
+      "frozen_frames"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "frozen_full.mp4",
+    "defects": [
+      "frozen_frames"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "flicker_4.mp4",
+    "defects": [
+      "flicker"
+    ],
+    "expected_verdict": "AUTO-FIX"
+  },
+  {
+    "file": "flicker_5.mp4",
+    "defects": [
+      "flicker"
+    ],
+    "expected_verdict": "AUTO-FIX"
+  },
+  {
+    "file": "flicker_6.mp4",
+    "defects": [
+      "flicker"
+    ],
+    "expected_verdict": "AUTO-FIX"
+  },
+  {
+    "file": "blur_3.mp4",
+    "defects": [
+      "blur"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "blur_4.mp4",
+    "defects": [
+      "blur"
+    ],
+    "expected_verdict": "REGEN NOTE"
+  },
+  {
+    "file": "flash_3.mp4",
+    "defects": [
+      "flash_screen"
+    ],
+    "expected_verdict": "ESCALATE"
+  },
+  {
+    "file": "hardneg_pan.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "hardneg_lightning.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "hardneg_shake.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
+  },
+  {
+    "file": "hardneg_fade.mp4",
+    "defects": [],
+    "expected_verdict": "PASS"
   }
 ]

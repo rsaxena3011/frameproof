@@ -72,8 +72,16 @@ def _dense_recheck(path: str, finding: dict, fps: float) -> tuple[bool, str]:
     if check == "flicker":
         luma = np.array([g.mean() / 255.0 for g in grays])
         detrended = luma - np.convolve(luma, np.ones(5) / 5, mode="same")
-        j = float(np.std(detrended[2:-2])) if len(luma) > 8 else 0.0
-        return (j > 0.012, f"native detrended jitter {j:.4f}")
+        win = max(8, int(round(fps * 0.5)))
+        if len(luma) >= 2 * win:
+            windows = [float(np.std(detrended[i + 2: i + win - 2]))
+                       for i in range(0, len(luma) - win + 1, win)]
+            j = float(np.median(windows)) if windows else 0.0
+        elif len(luma) > 8:
+            j = float(np.std(detrended[2:-2]))
+        else:
+            j = 0.0
+        return (j > 0.006, f"native median window jitter {j:.4f}")
     return True, "no dense method; coarse result stands"
 
 

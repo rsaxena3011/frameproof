@@ -29,3 +29,22 @@ Synthetic set, small n, verdict-level metric only. The real
 eval (40-60 clips incl. generated-video material and span
 localization scoring) is still owed before submission; this
 run proves the harness and caught one real bug.
+
+## Batch 2 + Run 3, 2026-10-12: 45/47, then 47/47
+Set expanded to 47 clips (more seeds, mid-clip freezes, 3 Hz and
+near-threshold flicker, milder blur, four new hard negatives:
+fast pan, camera shake, fade, one lightning strike).
+Run at batch 2: 45/47. Two misses, both in the flicker measure:
+1. flicker_4 (3 Hz) read PASS. Its oscillation is real but the
+   global detrended std (0.0105) sat under the 0.015 threshold.
+2. hardneg_lightning read AUTO-FIX. One 2-frame lightning spike
+   inflated the GLOBAL jitter to 0.053 while its per-window
+   median was 0.0001: a transient impersonating flicker.
+Fix: flicker is now the MEDIAN of per-0.5s-window detrended
+jitter (coarse threshold 0.008, dense confirm 0.006), in both
+stages. Measured separation: clean windows peak at 0.001,
+weakest true flicker 0.0105 in every window, lightning median
+0.0001. Re-run: 47/47, fixtures unchanged.
+Standing lesson, twice proven in one evening: global statistics
+hide exactly the local structure QC exists to catch. Measure
+in windows, confirm in spans.
